@@ -1,8 +1,7 @@
 const display = document.querySelector(".display");
-const buttons = document.querySelectorAll("button");
 
-let stack = []
-let mode = "Prefix"
+let stack = [];
+let mode = "Prefix";
 
 function addToDisplay(input) {
   display.value += input;
@@ -17,6 +16,7 @@ function deleteLast() {
 }
 
 function changeMode() {
+  clearDisplay();
   if (mode == "postfix") {
     mode = "prefix";
     document.querySelector(".display").placeholder = `MODE: ${mode}`;
@@ -27,7 +27,8 @@ function changeMode() {
   }
 
 function evaluatePrefix(expression) {
-  expression = display.value
+  expression = display.value;
+  console.log(expression);
 }
 
 function evaluatePostfix(expression) {
@@ -35,6 +36,6 @@ function evaluatePostfix(expression) {
 }
 
 function evaluate() {
-  if (mode == "prefix") return evaluatePrefix
-  else return evaluatePostfix;
+  if (mode == "prefix") return evaluatePrefix(expression);
+  else return evaluatePostfix(expression);
 }
