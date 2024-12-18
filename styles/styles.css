@@ -78,7 +78,7 @@ body {
   width: 100%;
   outline: none;
   border: none;
-  text-align: right;
+  /* text-align: right; */
   margin-bottom: 10px;
   font-size: 25px;
   color: #000e1a;
@@ -96,6 +96,7 @@ body {
   border-radius: 6px;
   border: none;
   background-color: #eee;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -108,7 +109,7 @@ body {
 }
 .operator {
   color: #2f9fff;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 500;
 }
 

@@ -17,32 +17,32 @@
   </header>
 
   <div class="container">
-    <input type="text" class="display" />
+    <input type="text" class="display" placeholder="MODE: Prefix" />
     <div class="buttons">
-      <button data-value="AC" class="number-buttons">AC</button>
-      <button data-value="DEL" class="number-buttons">DEL</button>
-      <button data-value="SHOW-STEPS" class="misc-buttons">SHOW STEPS</button>
-      <button data-value="/" class="operator">/</button>
+      <button onclick="clearDisplay()" class="number-buttons">AC</button>
+      <button onclick="deleteLast()" class="number-buttons">DEL</button>
+      <button onclick="addToDisplay(' ')" class="misc-buttons">SPACE</button>
+      <button onclick="addToDisplay('/')" class="operator">/</button>
       
-      <button data-value="7" class="number-buttons">7</button>
-      <button data-value="8" class="number-buttons">8</button>
-      <button data-value="9" class="number-buttons">9</button>
-      <button data-value="*" class="operator">*</button>
+      <button onclick="addToDisplay('7')" class="number-buttons">7</button>
+      <button onclick="addToDisplay('8')" class="number-buttons">8</button>
+      <button onclick="addToDisplay('9')" class="number-buttons">9</button>
+      <button onclick="addToDisplay('*')" class="operator">*</button>
 
-      <button data-value="4" class="number-buttons">4</button>
-      <button data-value="5" class="number-buttons">5</button>
-      <button data-value="6" class="number-buttons">6</button>
-      <button data-value="-" class="operator">-</button>
+      <button onclick="addToDisplay('4')" class="number-buttons">4</button>
+      <button onclick="addToDisplay('5')" class="number-buttons">5</button>
+      <button onclick="addToDisplay('6')" class="number-buttons">6</button>
+      <button onclick="addToDisplay('-')" class="operator">-</button>
 
-      <button data-value="1" class="number-buttons">1</button>
-      <button data-value="2" class="number-buttons">2</button>
-      <button data-value="3" class="number-buttons">3</button>
-      <button data-value="+" class="operator">+</button>
+      <button onclick="addToDisplay('1')" class="number-buttons">1</button>
+      <button onclick="addToDisplay('2')" class="number-buttons">2</button>
+      <button onclick="addToDisplay('3')" class="number-buttons">3</button>
+      <button onclick="addToDisplay('+')" class="operator">+</button>
 
-      <button data-value="mode" class="misc-buttons">MODE</button>
-      <button data-value="0" class="number-buttons">0</button>
-      <button data-value="." class="number-buttons">.</button>
-      <button data-value="=" class="operator">=</button>
+      <button onclick="changeMode()" class="misc-buttons">MODE</button>
+      <button onclick="addToDisplay('0')" class="number-buttons">0</button>
+      <button onclick="addToDisplay('.')" class="number-buttons">.</button>
+      <button onclick="evaluate()" class="operator">=</button>
     </div>
   </div>
   <script src="scripts/script.js"></script>
