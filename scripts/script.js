@@ -10,5 +10,5 @@ function clearDisplay() {
 }
 
 function deleteLast() {
-  display.value = display.value.slice(0, -1)
+  display.value = display.value.slice(0, -1) 
 }
