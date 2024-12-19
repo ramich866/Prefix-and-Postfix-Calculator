@@ -30,7 +30,6 @@ function changeMode() {
 
 
 function evaluatePrefix(expression) {
-  expression = display.value;
 
   if (expression.length > 1 && !expression.includes(" ")) {
     alert("Invalid Format") // check error
@@ -95,14 +94,13 @@ function evaluatePrefix(expression) {
 }
 
 function evaluatePostfix(expression) {
-  expression = display.value;
 
   if (expression.length > 1 && !expression.includes(" ")) {
     alert("Invalid Format") // check error
   return ;
 }
 
-showSteps(`! NEW EXPRESSION ! ${expression}`, []);
+showSteps(`! NEW EXPRESSION !  ${expression}`, []);
 
    // skip if character is space
   for (let i = 0; i < expression.length; i++){
@@ -156,7 +154,7 @@ showSteps(`! NEW EXPRESSION ! ${expression}`, []);
 }
 
 function calculateResult() {
-  if (mode == "prefix") evaluatePrefix(expression);  //check mode
+  if (mode == "Prefix") evaluatePrefix(expression);  //check mode
   else evaluatePostfix(expression);
   clearDisplay();   // clear the expression
   display.value = stack; // print answer
@@ -168,4 +166,7 @@ function showSteps(step , current_stack) {
   step_char.innerText = `${step} --> [ ${current_stack.join(", ")} ]`;
 
   steps_container.appendChild(step_char);
+
+  //scroll to the latest step
+  steps_container.scrollTop = steps_container.scrollHeight;
 }
