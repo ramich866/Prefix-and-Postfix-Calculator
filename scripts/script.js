@@ -31,25 +31,32 @@ function evaluatePrefix(expression) {
   expression = display.value;
   
   if (expression.length > 1 && !expression.includes(" ")) {
-    alert("Invalid Format")
+    alert("Invalid Format") // check error
   return ;
 }
-
+  // skip if character is space
   for (let i = expression.length - 1; i >= 0; i--) {
-    if (expression[i] == ' ') continue; // skip if character is space
+    if (expression[i] == ' ') continue; 
     
-    if (expression[i] >= '0' && expression[i] <= '9') {
-      let number = 0;
-      let j = i;
+    //check if digit
+    if (expression[i] >= '0' && expression[i] <= '9') { 
 
+      //for multiple integers
+      let number = 0; 
+      let j = i; //keep i value in j for later
+
+      // identify substring traversing backwards
       while (i < expression.length && expression[i] >= '0' && expression[i] <= '9') {
         i--;
       } 
       i++;
 
+      // shift value of number to the left 
+      // and - 0 to get numeric value
       for (let v = i; v <= j; v++) {
-        number = number * 10 + (expression[v] - '0');
-        }
+        number = number * 10 + (expression[v] - '0'); 
+        }   
+
       stack.push(number); 
     } 
     else { // found operator ==> pop two elements
@@ -59,31 +66,29 @@ function evaluatePrefix(expression) {
         stack.pop();
 
         switch (expression[i]) { // calculate operations  
-          case "+": stack.push(A + B);
-          break;
-          case "-": stack.push(A - B);
-          break;
-          case "*": stack.push(A * B);
-          break;
-          case "/": stack.push(A / B);
-          break;
+          case "+": stack.push(A + B); break;
+          case "-": stack.push(A - B); break;
+          case "*": stack.push(A * B); break;
+          case "/": if (B == 0) {   // division by zero
+            alert("Don't divide by zero");
+            return;
+          }
+            stack.push(A / B); break;
       }
     }
   }
-  // console.log(stack);
-  // console.log(expression);
   return stack[stack.length - 1];
 }
 
-//not finished
+//working on it
 function evaluatePostfix(expression) {
   expression = display.value;
 }
 
 function calculateResult() {
-  if (mode == "prefix") evaluatePrefix(expression);
+  if (mode == "prefix") evaluatePrefix(expression);  //check mode
   else evaluatePostfix(expression);
-  clearDisplay();
-  display.value = stack;
-  stack = [];
+  clearDisplay();   // clear the expression
+  display.value = stack; // print answer
+  stack = [];   // empty the stack
 }
