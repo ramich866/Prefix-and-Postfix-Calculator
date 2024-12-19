@@ -80,7 +80,6 @@ function evaluatePrefix(expression) {
   return stack[stack.length - 1];
 }
 
-//working on it
 function evaluatePostfix(expression) {
   expression = display.value;
 
