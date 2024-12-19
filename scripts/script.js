@@ -3,7 +3,7 @@ const steps_container = document.querySelector(".steps-container");
 
 let stack = [];
 
-let mode = "prefix";
+let mode = "Prefix";
 const expression = display.value;
 
 function addToDisplay(input) {
@@ -30,6 +30,7 @@ function changeMode() {
 
 
 function evaluatePrefix(expression) {
+  expression = display.value;
 
   if (expression.length > 1 && !expression.includes(" ")) {
     alert("Invalid Format") // check error
@@ -41,12 +42,12 @@ function evaluatePrefix(expression) {
   for (let i = expression.length - 1; i >= 0; i--) {
     if (expression[i] == ' ') continue; 
     
-    //check if digit
+    // check if digit
     if (expression[i] >= '0' && expression[i] <= '9') { 
 
-      //for multiple integers
+      // for multiple integers
       let number = 0; 
-      let j = i; //keep i value in j for later
+      let j = i;  // keep i value in j for later
 
       // identify substring traversing backwards
       while (i < expression.length && expression[i] >= '0' && expression[i] <= '9') {
@@ -93,8 +94,10 @@ function evaluatePrefix(expression) {
   return stack[stack.length - 1];
 }
 
-function evaluatePostfix(expression) {
 
+function evaluatePostfix(expression) {
+  expression = display.value;
+  
   if (expression.length > 1 && !expression.includes(" ")) {
     alert("Invalid Format") // check error
   return ;
@@ -116,7 +119,6 @@ showSteps(`! NEW EXPRESSION !  ${expression}`, []);
       while (expression[i] >= '0' && expression[i] <= '9') {
         number = number * 10 + (expression[i] - '0');
         i++;
-        expression[i] = expression[i]
       }
       i--;
 
@@ -156,15 +158,18 @@ showSteps(`! NEW EXPRESSION !  ${expression}`, []);
 function calculateResult() {
   if (mode == "Prefix") evaluatePrefix(expression);  //check mode
   else evaluatePostfix(expression);
+
   clearDisplay();   // clear the expression
-  display.value = stack; // print answer
+  if (isNaN(stack)) alert ("Who taught you math?")
+    else display.value = stack;   // print answer
   stack = [];   // empty the stack
 }
 
 function showSteps(step , current_stack) {
-  const step_char = document.createElement("p");
+  const step_char = document.createElement("p"); // create <p>
   step_char.innerText = `${step} --> [ ${current_stack.join(", ")} ]`;
 
+  // add to container
   steps_container.appendChild(step_char);
 
   //scroll to the latest step
