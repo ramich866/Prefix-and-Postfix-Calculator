@@ -83,6 +83,50 @@ function evaluatePrefix(expression) {
 //working on it
 function evaluatePostfix(expression) {
   expression = display.value;
+
+  if (expression.length > 1 && !expression.includes(" ")) {
+    alert("Invalid Format") // check error
+  return ;
+}
+   // skip if character is space
+  for (let i = 0; i < expression.length; i++){
+    if (expression[i] == ' ') {
+      continue;
+    }
+    // if i is digit
+    else if (expression[i] >= '0' && expression[i] <= '9') {
+      let number = 0;
+
+      // shift value of number to the left 
+      // and - 0 to get numeric value
+      while (expression[i] >= '0' && expression[i] <= '9') {
+        number = number * 10 + (expression[i] - '0');
+        i++;
+        expression[i] = expression[i]
+      }
+      i--;
+
+      stack.push(number);
+    }
+    else {  // found operator ==> pop two elements 
+      let A = stack[stack.length - 1];
+      stack.pop();
+      let B = stack[stack.length - 1];
+      stack.pop();
+
+      switch (expression[i]) { // calculate operations  
+        case "+": stack.push(A + B); break;
+        case "-": stack.push(A - B); break;
+        case "*": stack.push(A * B); break;
+        case "/": if (B == 0) {   // division by zero
+          alert("Don't divide by zero");
+          return;
+        }
+          stack.push(A / B); break;
+      }
+    }
+  }
+  return stack[stack.length - 1];
 }
 
 function calculateResult() {
