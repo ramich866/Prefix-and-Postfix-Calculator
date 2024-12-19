@@ -31,9 +31,8 @@ function evaluatePrefix(expression) {
   expression = display.value;
   
   if (expression.length > 1 && !expression.includes(" ")) {
-    expression = "yolo"
-    console.log(expression)
-  return clearDisplay();
+    alert("Invalid Format")
+  return ;
 }
 
   for (let i = expression.length - 1; i >= 0; i--) {
@@ -71,8 +70,8 @@ function evaluatePrefix(expression) {
       }
     }
   }
-  console.log(stack);
-  console.log(expression);
+  // console.log(stack);
+  // console.log(expression);
   return stack[stack.length - 1];
 }
 
