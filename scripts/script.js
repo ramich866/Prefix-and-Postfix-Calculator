@@ -1,4 +1,5 @@
 const display = document.querySelector(".display");
+const steps_container = document.querySelector(".steps-container");
 
 let stack = [];
 
@@ -27,13 +28,16 @@ function changeMode() {
   document.querySelector(".display").placeholder = `MODE: ${mode}`;
 }
 
+
 function evaluatePrefix(expression) {
   expression = display.value;
-  
+
   if (expression.length > 1 && !expression.includes(" ")) {
     alert("Invalid Format") // check error
   return ;
 }
+  showSteps(`! NEW EXPRESSION ! ${expression}`, []);
+
   // skip if character is space
   for (let i = expression.length - 1; i >= 0; i--) {
     if (expression[i] == ' ') continue; 
@@ -58,22 +62,32 @@ function evaluatePrefix(expression) {
         }   
 
       stack.push(number); 
+      showSteps(`Push ${number}`, stack);
     } 
     else { // found operator ==> pop two elements
         let A = stack[stack.length - 1];
         stack.pop();
         let B = stack[stack.length - 1];
         stack.pop();
+        showSteps(`Pop ${A} & ${B} <--`, stack);
 
         switch (expression[i]) { // calculate operations  
-          case "+": stack.push(A + B); break;
-          case "-": stack.push(A - B); break;
-          case "*": stack.push(A * B); break;
+          case "+": stack.push(A + B);
+          showSteps(`Push ${A} + ${B} = ${A + B}`, stack); 
+            break;
+          case "-": stack.push(A - B);
+          showSteps(`Push ${A} - ${B} = ${A - B}`, stack);
+            break;
+          case "*": stack.push(A * B); 
+          showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
+            break;
           case "/": if (B == 0) {   // division by zero
             alert("Don't divide by zero");
             return;
           }
-            stack.push(A / B); break;
+            stack.push(A / B);
+              showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
+                break;
       }
     }
   }
@@ -87,6 +101,9 @@ function evaluatePostfix(expression) {
     alert("Invalid Format") // check error
   return ;
 }
+
+showSteps(`! NEW EXPRESSION ! ${expression}`, []);
+
    // skip if character is space
   for (let i = 0; i < expression.length; i++){
     if (expression[i] == ' ') {
@@ -106,22 +123,32 @@ function evaluatePostfix(expression) {
       i--;
 
       stack.push(number);
+      showSteps(`Push ${number}`, stack);
     }
     else {  // found operator ==> pop two elements 
       let A = stack[stack.length - 1];
       stack.pop();
       let B = stack[stack.length - 1];
       stack.pop();
+      showSteps(`Pop ${A} & ${B} <--`, stack);
 
       switch (expression[i]) { // calculate operations  
-        case "+": stack.push(A + B); break;
-        case "-": stack.push(A - B); break;
-        case "*": stack.push(A * B); break;
+        case "+": stack.push(A + B); 
+        showSteps(`Push ${A} + ${B} = ${A + B}`, stack);
+          break;
+        case "-": stack.push(A - B); 
+        showSteps(`Push ${A} - ${B} = ${A - B}`, stack);
+          break;
+        case "*": stack.push(A * B);
+        showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
+          break;
         case "/": if (B == 0) {   // division by zero
           alert("Don't divide by zero");
           return;
         }
-          stack.push(A / B); break;
+          stack.push(A / B); 
+          showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
+          break;
       }
     }
   }
@@ -134,4 +161,11 @@ function calculateResult() {
   clearDisplay();   // clear the expression
   display.value = stack; // print answer
   stack = [];   // empty the stack
+}
+
+function showSteps(step , current_stack) {
+  const step_char = document.createElement("p");
+  step_char.innerText = `${step} --> [ ${current_stack.join(", ")} ]`;
+
+  steps_container.appendChild(step_char);
 }
