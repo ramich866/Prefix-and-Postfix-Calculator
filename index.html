@@ -9,7 +9,7 @@
 <body>
   <header class="header"> <!-- Navigation Bar-->
       <p class="logo"> 
-        Prefix Postfix Calculator
+        Prefix & Postfix Calculator
       </p>
     <nav class="navbar">
       <a href="#"> github</a>
@@ -17,6 +17,7 @@
   </header>
 
 <div class="body-container">
+  <div class="container-1">
   <div class="calculator-container">
     <input type="text" class="display" placeholder="MODE: Prefix" />
     <div class="buttons">
@@ -47,22 +48,42 @@
     </div>
   </div>
 
-  <div class="card-container">
     <div class="card">
       <div class="card-content">
-        <h3>Steps: </h3>
+        <h3>Steps  </h3>
           <div class="steps-container"></div>
       </div>
     </div>
+</div>
+  
 
-    <div class="card">
-      <div class="card-content">
-        <h3>Brief Explanation</h3>
-          <h4>sdsddw</h4>
-            <p>dddddddddddddddewdwddddddwwdw</p>
-      </div>
-    </div>
+  <div class="container-2">
+  <div class="card">
+    <div class="card-content">
+      <h3>Brief Explanation  </h3>
+          <p>In mathematics and computer science, we often use expressions to represent calculations.
+            </p> 
+            <h4>Infix notation : </h4>
+              <p> Standard way of writing expressions, with operators placed between operands.
+                </p>
+              <p>For example, (a+b)*c is an infix expression.
+                </p>  
+            
+            <h4>Prefix notation : "<span> - + 7 * 45 + 20 </span>"</h4> 
+            <p>Places the operator before its operands. </p>
+            <p>For instance, <span>*+abc</span> is the prefix notation for the infix expression <span>(a+b)*c </span>.</p>
+  
+            <h4>Postfix notation : "<span> 100 200 + 2 / 5 * 7 + </span>" </h4> 
+            <p>Places the operator after its operands. </p>
+            <p>For example, <span>ab+c*</span> is the postfix notation for the infix expression <span>(a+b)*c </span>.</p>
+            <br>
+            <p>These notations are often used in compiler design 
+              </p>
+            <p>and calculator implementations as they simplify expression evaluation and parsing.
+              </p>
+    
   </div>
+</div>
 </div>
   <script src="scripts/script.js"></script>
 </body>
