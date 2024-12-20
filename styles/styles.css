@@ -4,6 +4,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  scrollbar-width: none;
+}
+
 :root {
   --base-color: #E5D9F2;
   --base-variant: #F5EFFF;
