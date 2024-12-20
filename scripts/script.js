@@ -75,11 +75,6 @@ function evaluatePrefix(expression) {
             break;
       }
     }
-    //   if (isNaN(token)) {
-    //   clearSteps();
-    //   console.log(token);
-    //   return result = "Invalid Expression";
-    // }
   }
   //pop the result, return it
   result = stack[stack.length - 1];
@@ -131,11 +126,6 @@ function evaluatePostfix(expression) {
           break;
       }
     } 
-    // if (isNaN(token)) {
-    //   clearSteps();
-    //   console.log(token);
-    //   return result = "Invalid Expression";
-    // }
   }
 
   // pop result, then return it
@@ -163,9 +153,15 @@ function calculateResult() {
   if (mode == "Prefix") evaluatePrefix(expression);  
   else evaluatePostfix(expression);
     
-    clearDisplay(); // clear the expression
-    display.value = result; // print answer to display
-    result = null;   // reset result
+  // error handling after evaluation
+  if (result == undefined || result == NaN || result == Infinity) {
+    result = "Invalid Expression";
+    clearDisplay();
+    clearSteps();
+  } 
+  // display then reset result
+  display.value = result;
+  result = null;
 }
 
 function showSteps(step , current_stack) {
@@ -184,6 +180,7 @@ function clearSteps() {
   document.querySelector(".steps").textContent = "";
 }
 
+// click steps box to clear
 steps.addEventListener('click', () => {
   clearSteps();
 })
