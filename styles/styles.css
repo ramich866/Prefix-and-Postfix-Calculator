@@ -31,6 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   position: fixed;
   top: 20px;
@@ -51,6 +52,7 @@
 .darkmode #theme-switch svg:last-child {
   display: none;
 }
+
 .header {
   margin: 0;
   padding: 0;
