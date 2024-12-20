@@ -72,6 +72,12 @@ function evaluatePrefix(expression) {
             showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
             break;
       }
+    } if (isNaN(token)) {
+      clearSteps();
+      console.log(token);
+      
+      return result = "Invalid Expression";
+      
     }
   }
   //pop the result, return it
