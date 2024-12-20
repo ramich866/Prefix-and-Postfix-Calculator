@@ -1,5 +1,5 @@
 const display = document.querySelector(".display");
-const steps_container = document.querySelector(".steps-container");
+const steps = document.querySelector(".steps");
 
 let stack = [];
 
@@ -170,8 +170,8 @@ function showSteps(step , current_stack) {
   step_char.innerText = `${step} --> [ ${current_stack.join(", ")} ]`;
 
   // add to container
-  steps_container.appendChild(step_char);
+  steps.appendChild(step_char);
 
   //scroll to the latest step
-  steps_container.scrollTop = steps_container.scrollHeight;
+  steps.scrollTop = steps.scrollHeight;
 }
