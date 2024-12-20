@@ -1,7 +1,8 @@
-const display = document.querySelector(".display");
 const steps = document.querySelector(".steps");
+const display = document.querySelector(".display");
 
-let mode = "Prefix";
+// Initialized variables
+let mode = "Prefix";  
 const expression = display.value;
 
 function addToDisplay(input) {
@@ -27,16 +28,16 @@ function changeMode() {
 }
 
 function evaluatePrefix(expression) {
-  expression = display.value.trim();
   let stack = [];
+  expression = display.value.trim();
 
   showSteps(`<NEW EXPRESSION>  ${expression}`, []);
 
+  // move from right to left
   for (let j = expression.length - 1; j >= 0; j--) {
-    if (expression[j] == ' ') {
-      continue;
-    }
+    if (expression[j] == ' ') continue;
 
+    // if number, push to stack
     if (!isNaN(expression[j])) {
       let num = '';
       while (j >= 0 && !isNaN(expression[j]) && expression[j] != ' ') {
@@ -52,10 +53,12 @@ function evaluatePrefix(expression) {
         return ;
       }
 
+      // pop two operands
       let A = stack.pop();
       let B = stack.pop();
       showSteps(`Pop ${A} & ${B} <--`, stack);
 
+      // perform operation, push result to stack
       switch (expression[j]) {
         case '+':
           stack.push(A + B);
@@ -84,40 +87,43 @@ function evaluatePrefix(expression) {
     }
   }
 
+  //if result is not a single value
   if (stack.length != 1) {
     alert("Invalid expression: too many operands");
     return;
   }
 
+  // pop the result, return it
   result = stack.pop();
-  console.log("Final result:", result); // Debugging statement
   return result;
 }
 
 
 function evaluatePostfix(expression) {
-  expression = display.value.trim();
   let stack = [];
+  expression = display.value.trim();
   let tokens = expression.split(/\s+/); // Split by whitespace
 
   showSteps(`<NEW EXPRESSION>  ${expression}`, []);
-
+  // move from left to right
   for (let i = 0; i < tokens.length; i++) {
     let token = tokens[i];
 
+    // if number, push to stack
     if (!isNaN(token)) {
       stack.push(parseInt(token));
       showSteps(`Push ${token}`, stack);
     } else {
-      if (stack.length < 2) {
+      if (stack.length < 2) {  //error handling
         alert("Insufficient Operands");
         return ;
       }
-
+      // pop two operands
       let A = stack.pop();
       let B = stack.pop();
       showSteps(`Pop ${A} & ${B} <--`, stack);
 
+      // operations
       switch (token) {
         case '+':
           stack.push(B + A);
@@ -145,14 +151,13 @@ function evaluatePostfix(expression) {
       }
     }
   }
-
+  // check result
   if (stack.length != 1) {
     alert("Invalid expression: too many operands");
     return;
   }
-  
+  // pop result, then return it
   result = stack[stack.length - 1];
-  
   return result;
 }
 
@@ -162,7 +167,6 @@ function calculateResult() {
   else evaluatePostfix(expression);
 
     clearDisplay(); // clear the expression
-    console.log(result);
     display.value = result; // print answer to display
     result = null;   // reset result
 }
@@ -178,6 +182,7 @@ function showSteps(step , current_stack) {
   steps.scrollTop = steps.scrollHeight;
 }
 
+// clear steps box
 function clearSteps() {
   document.querySelector(".steps").textContent = "";
 }
