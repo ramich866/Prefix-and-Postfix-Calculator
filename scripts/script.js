@@ -75,9 +75,7 @@ function evaluatePrefix(expression) {
     } if (isNaN(token)) {
       clearSteps();
       console.log(token);
-      
       return result = "Invalid Expression";
-      
     }
   }
   //pop the result, return it
@@ -101,10 +99,6 @@ function evaluatePostfix(expression) {
       stack.push(parseInt(token)); //parseInt to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
     } else {
-      if (stack.length < 2) {  //error handling
-        alert("Insufficient Operands");
-        return ;
-      }
       // pop two operands
       let A = stack.pop();
       let B = stack.pop();
@@ -133,13 +127,14 @@ function evaluatePostfix(expression) {
           showSteps(`Push ${B} / ${A} = ${B / A}`, stack);
           break;
       }
+    } 
+    if (isNaN(token)) {
+      clearSteps();
+      console.log(token);
+      return result = "Invalid Expression";
     }
   }
-  // check result
-  if (stack.length != 1) {
-    alert("Invalid expression: too many operands");
-    return;
-  }
+
   // pop result, then return it
   result = stack[stack.length - 1];
   return result;
