@@ -175,3 +175,11 @@ function showSteps(step , current_stack) {
   //scroll to the latest step
   steps.scrollTop = steps.scrollHeight;
 }
+
+function clearSteps() {
+  document.querySelector(".steps").textContent = "";
+}
+
+steps.addEventListener('click', () => {
+  clearSteps();
+})

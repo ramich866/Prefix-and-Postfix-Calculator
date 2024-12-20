@@ -188,7 +188,6 @@ input::placeholder{
   font-size: 20px;
 }
 .operator {
-  /* color: var(--accent-color); */
   font-size: 25px;
   font-weight: 500;
 }
@@ -257,5 +256,5 @@ h3 {
   overflow-y: auto;
   max-height: 300px;
   min-height: 100px;
+  cursor: no-drop;
 }
-
