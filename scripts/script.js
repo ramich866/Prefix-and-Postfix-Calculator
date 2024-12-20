@@ -66,9 +66,13 @@ function evaluatePrefix(expression) {
             stack.push(A * B);
             showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
             break;
+          case '**':
+            stack.push(B ** A);
+            showSteps(`Push ${B} ** ${A} = ${B ** A}`, stack);
+            break;
           case '/':
             if (B == 0) {
-              return result = "Division by zero error";;
+              return result = "Division by zero error";
             }
             stack.push(A / B);
             showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
@@ -116,10 +120,13 @@ function evaluatePostfix(expression) {
           stack.push(B * A);
           showSteps(`Push ${B} * ${A} = ${B * A}`, stack);
           break;
+        case '**':
+          stack.push(B ** A);
+          showSteps(`Push ${B} ** ${A} = ${B ** A}`, stack);
+          break;
         case '/':
           if (A == 0) {
-            alert("Division by zero error");
-            return;
+            return result = "Division by zero error";
           }
           stack.push(B / A);
           showSteps(`Push ${B} / ${A} = ${B / A}`, stack);
