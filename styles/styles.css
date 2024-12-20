@@ -31,6 +31,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: fixed;
+  top: 20px;
+  right:20px;
 }
 
 #theme-switch svg {
@@ -86,17 +90,13 @@ body {
   font-weight: 500;
 }
 
-.navbar{
-  display: flex;
-}
-
 .navbar a {
   position: relative;
   font-size: 18px;
   color: #fff;
   font-weight: 300;
   text-decoration: none;
-  margin-right: 50px;
+  margin: 0px 20px;
 }
 
 .navbar a::before {
