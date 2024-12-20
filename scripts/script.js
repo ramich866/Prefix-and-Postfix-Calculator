@@ -165,6 +165,9 @@ function calculateResult() {
   if (display.value == "") {
     return;
   }
+  if (display.value.length == 1 || display.value.length == 2) {
+    return;
+  }
   if (mode == "Prefix") evaluatePrefix(expression);  //check mode
   else evaluatePostfix(expression);
 
