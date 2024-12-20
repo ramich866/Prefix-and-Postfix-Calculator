@@ -5,12 +5,15 @@ const display = document.querySelector(".display");
 let mode = "Prefix";  
 const expression = display.value;
 
-function addToDisplay(input) {
-  display.value += input;
-}
-
 function clearDisplay() {
   display.value = "";
+}
+
+function addToDisplay(input) {
+  if (display.value === "Invalid Expression") {
+    clearDisplay();
+  }
+  display.value += input;
 }
 
 function deleteLast() {
@@ -40,7 +43,7 @@ function evaluatePrefix(expression) {
 
     //if number, push to stack
     if(!isNaN(token)) {
-      stack.push(parseInt(token));  //parseint to get multiple digit numbers
+      stack.push(parseInt(token));  //parseInt to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
     }
     else {
@@ -65,18 +68,18 @@ function evaluatePrefix(expression) {
             break;
           case '/':
             if (B == 0) {
-              alert("Division by zero error");
-              return;
+              return result = "Division by zero error";;
             }
             stack.push(A / B);
             showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
             break;
       }
-    } if (isNaN(token)) {
-      clearSteps();
-      console.log(token);
-      return result = "Invalid Expression";
     }
+    //   if (isNaN(token)) {
+    //   clearSteps();
+    //   console.log(token);
+    //   return result = "Invalid Expression";
+    // }
   }
   //pop the result, return it
   result = stack[stack.length - 1];
@@ -128,11 +131,11 @@ function evaluatePostfix(expression) {
           break;
       }
     } 
-    if (isNaN(token)) {
-      clearSteps();
-      console.log(token);
-      return result = "Invalid Expression";
-    }
+    // if (isNaN(token)) {
+    //   clearSteps();
+    //   console.log(token);
+    //   return result = "Invalid Expression";
+    // }
   }
 
   // pop result, then return it
@@ -159,7 +162,7 @@ function calculateResult() {
   //check mode
   if (mode == "Prefix") evaluatePrefix(expression);  
   else evaluatePostfix(expression);
-
+    
     clearDisplay(); // clear the expression
     display.value = result; // print answer to display
     result = null;   // reset result
