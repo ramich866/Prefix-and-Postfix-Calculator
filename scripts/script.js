@@ -102,7 +102,7 @@ function evaluatePrefix(expression) {
 function evaluatePostfix(expression) {
   let stack = [];
   expression = display.value.trim();
-  let tokens = expression.split(/\s+/); // Split by whitespace
+  let tokens = expression.split(' '); // Split by space
 
   showSteps(`<NEW EXPRESSION>  ${expression}`, []);
   // move from left to right
@@ -166,6 +166,9 @@ function calculateResult() {
     return;
   }
   if (display.value.length == 1 || display.value.length == 2) {
+    return;
+  }
+  if (!display.value.match(/\d/)) {
     return;
   }
   if (mode == "Prefix") evaluatePrefix(expression);  //check mode
