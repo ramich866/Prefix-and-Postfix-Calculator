@@ -257,4 +257,5 @@ h3 {
   max-height: 300px;
   min-height: 100px;
   cursor: no-drop;
+  text-align: center;
 }

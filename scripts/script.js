@@ -98,7 +98,7 @@ function evaluatePrefix(expression) {
   return result;
 }
 
-
+// insert space between operators and operands
 function evaluatePostfix(expression) {
   let stack = [];
   expression = display.value.trim();
@@ -111,7 +111,7 @@ function evaluatePostfix(expression) {
 
     // if number, push to stack
     if (!isNaN(token)) {
-      stack.push(parseInt(token));
+      stack.push(parseInt(token)); //parseInt to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
     } else {
       if (stack.length < 2) {  //error handling
@@ -162,7 +162,9 @@ function evaluatePostfix(expression) {
 }
 
 function calculateResult() {
-  
+  if (display.value == "") {
+    return;
+  }
   if (mode == "Prefix") evaluatePrefix(expression);  //check mode
   else evaluatePostfix(expression);
 
