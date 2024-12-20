@@ -30,71 +30,52 @@ function changeMode() {
 function evaluatePrefix(expression) {
   let stack = [];
   expression = display.value.trim();
+  let tokens = expression.split(' '); // Split by space
 
   showSteps(`<NEW EXPRESSION>  ${expression}`, []);
 
-  // move from right to left
-  for (let j = expression.length - 1; j >= 0; j--) {
-    if (expression[j] == ' ') continue;
+  //move from right to left
+  for(let i = tokens.length - 1; i >= 0; i--){
+    let token = tokens[i];
 
-    // if number, push to stack
-    if (!isNaN(expression[j])) {
-      let num = '';
-      while (j >= 0 && !isNaN(expression[j]) && expression[j] != ' ') {
-        num = expression[j] + num;
-        j--;
-      }
-      j++;
-      stack.push(parseInt(num));
-      showSteps(`Push ${num}`, stack);
-    } else {
-      if (stack.length < 2) {
-        alert("Insufficient Operands");
-        return ;
-      }
-
-      // pop two operands
+    //if number, push to stack
+    if(!isNaN(token)) {
+      stack.push(parseInt(token));  //parseint to get multiple digit numbers
+      showSteps(`Push ${token}`, stack);
+    }
+    else {
+      // pop two operands from stack
       let A = stack.pop();
       let B = stack.pop();
       showSteps(`Pop ${A} & ${B} <--`, stack);
 
-      // perform operation, push result to stack
-      switch (expression[j]) {
-        case '+':
-          stack.push(A + B);
-          showSteps(`Push ${A} + ${B} = ${A + B}`, stack);
-          break;
-        case '-':
-          stack.push(A - B);
-          showSteps(`Push ${A} - ${B} = ${A - B}`, stack);
-          break;
-        case '*':
-          stack.push(A * B);
-          showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
-          break;
-        case '/':
-          if (B == 0) {
-            alert("Division by zero error");
-            return;
-          }
-          stack.push(A / B);
-          showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
-          break;
-        default:
-          alert("Invalid character in expression");
-          return;
+      //operations
+      switch(token) {
+          case '+':
+            stack.push(A + B);
+            showSteps(`Push ${A} + ${B} = ${A + B}`, stack);
+            break;
+          case '-':
+            stack.push(A - B);
+            showSteps(`Push ${A} - ${B} = ${A - B}`, stack);
+            break;
+          case '*':
+            stack.push(A * B);
+            showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
+            break;
+          case '/':
+            if (B == 0) {
+              alert("Division by zero error");
+              return;
+            }
+            stack.push(A / B);
+            showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
+            break;
       }
     }
   }
-
-  //if result is not a single value
-  if (stack.length != 1) {
-    alert("Invalid expression: too many operands");
-    return;
-  }
-
-  // pop the result, return it
-  result = stack.pop();
+  //pop the result, return it
+  result = stack[stack.length - 1];
   return result;
 }
 
@@ -145,9 +126,6 @@ function evaluatePostfix(expression) {
           stack.push(B / A);
           showSteps(`Push ${B} / ${A} = ${B / A}`, stack);
           break;
-        default:
-          alert("Invalid character in expression");
-          return;
       }
     }
   }
@@ -162,6 +140,8 @@ function evaluatePostfix(expression) {
 }
 
 function calculateResult() {
+
+  // error handling for smooth ride
   if (display.value == "") {
     return;
   }
@@ -171,7 +151,12 @@ function calculateResult() {
   if (!display.value.match(/\d/)) {
     return;
   }
-  if (mode == "Prefix") evaluatePrefix(expression);  //check mode
+  if (display.value == 0) { 
+    return;
+  }
+
+  //check mode
+  if (mode == "Prefix") evaluatePrefix(expression);  
   else evaluatePostfix(expression);
 
     clearDisplay(); // clear the expression
