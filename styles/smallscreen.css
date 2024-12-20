@@ -1,0 +1,29 @@
+.header {
+  box-sizing: unset;
+  width: 430px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 15px;
+}
+
+.navbar a {
+  font-size: 10px;
+}
+
+.container-1 {
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.calculator-container {
+  width: 430px;
+  height: 450px;
+}
+
+.explanation-container {
+  overflow-x: auto;
+  max-width: 375px;
+}

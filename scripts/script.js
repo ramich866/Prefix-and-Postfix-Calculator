@@ -36,7 +36,7 @@ function evaluatePrefix(expression) {
     alert("Invalid Format") // check error
   return ;
 }
-  showSteps(`! NEW EXPRESSION ! ${expression}`, []);
+  showSteps(`<NEW EXPRESSION>  ${expression}`, []);
 
   // skip if character is space
   for (let i = expression.length - 1; i >= 0; i--) {
@@ -103,7 +103,7 @@ function evaluatePostfix(expression) {
   return ;
 }
 
-showSteps(`! NEW EXPRESSION !  ${expression}`, []);
+showSteps(`<NEW EXPRESSION>  ${expression}`, []);
 
    // skip if character is space
   for (let i = 0; i < expression.length; i++){
@@ -160,7 +160,7 @@ function calculateResult() {
   else evaluatePostfix(expression);
 
   clearDisplay();   // clear the expression
-  if (isNaN(stack)) alert ("Who taught you math?")
+  if (isNaN(stack)) alert ("Who taught you math?") 
     else display.value = stack;   // print answer
   stack = [];   // empty the stack
 }

@@ -4,6 +4,15 @@
   font-family: "Poppins", sans-serif;
 }
 
+:root {
+  --base-color: #fff;
+  --base-variant: #e8e9ed;
+  --text-color: #111528;
+  --secondary-color: #666;
+  --primary-color: #3a435d;
+  --accent-color: #2f9fff;
+}
+
 .header {
   margin: 0;
   padding: 0;
@@ -178,7 +187,13 @@ body {
   padding: 16px;
 }
 
-.card-content h3 {
+.steps-container-content  {
+  padding: 16px;
+  overflow: auto;
+  transition: max-height 0.3s ease-in-out;
+}
+
+h3 {
   font-size: 28px;
   margin: 0px;
   text-align: center;
