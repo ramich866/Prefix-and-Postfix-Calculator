@@ -40,17 +40,17 @@ function evaluatePrefix(expression) {
 
   // skip if character is space
   for (let i = expression.length - 1; i >= 0; i--) {
-    if (expression[i] == ' ') continue; 
+    if (e == ' ') continue; 
     
     // check if digit
-    if (expression[i] >= '0' && expression[i] <= '9') { 
+    if (e >= '0' && e <= '9') { 
 
       // for multiple integers
       let number = 0; 
       let j = i;  // keep i value in j for later
 
       // identify substring traversing backwards
-      while (i < expression.length && expression[i] >= '0' && expression[i] <= '9') {
+      while (i < expression.length && e >= '0' && e <= '9') {
         i--;
       } 
       i++;
@@ -71,7 +71,7 @@ function evaluatePrefix(expression) {
         stack.pop();
         showSteps(`Pop ${A} & ${B} <--`, stack);
 
-        switch (expression[i]) { // calculate operations  
+        switch (e) { // calculate operations  
           case "+": stack.push(A + B);
           showSteps(`Push ${A} + ${B} = ${A + B}`, stack); 
             break;
@@ -96,73 +96,76 @@ function evaluatePrefix(expression) {
 
 
 function evaluatePostfix(expression) {
-  expression = display.value;
+  expression = display.value.trim();
+  let stack = [];
+  let tokens = expression.split(/\s+/); // Split by whitespace
+
+  showSteps(`<NEW EXPRESSION>  ${expression}`, []);
+
+  for (let i = 0; i < tokens.length; i++) {
+    let token = tokens[i];
+
   
-  if (expression.length > 1 && !expression.includes(" ")) {
-    alert("Invalid Format") // check error
-  return ;
-}
-
-showSteps(`<NEW EXPRESSION>  ${expression}`, []);
-
-   // skip if character is space
-  for (let i = 0; i < expression.length; i++){
-    if (expression[i] == ' ') {
-      continue;
-    }
-    // if i is digit
-    else if (expression[i] >= '0' && expression[i] <= '9') {
-      let number = 0;
-
-      // shift value of number to the left 
-      // and - 0 to get numeric value
-      while (expression[i] >= '0' && expression[i] <= '9') {
-        number = number * 10 + (expression[i] - '0');
-        i++;
+    if (!isNaN(token)) {
+      stack.push(parseInt(token));
+      showSteps(`Push ${token}`, stack);
+    } else {
+      if (stack.length < 2) {
+        alert("Insufficient Operands");
+        return ;
       }
-      i--;
 
-      stack.push(number);
-      showSteps(`Push ${number}`, stack);
-    }
-    else {  // found operator ==> pop two elements 
-      let A = stack[stack.length - 1];
-      stack.pop();
-      let B = stack[stack.length - 1];
-      stack.pop();
+      let A = stack.pop();
+      let B = stack.pop();
       showSteps(`Pop ${A} & ${B} <--`, stack);
 
-      switch (expression[i]) { // calculate operations  
-        case "+": stack.push(A + B); 
-        showSteps(`Push ${A} + ${B} = ${A + B}`, stack);
+      switch (token) {
+        case '+':
+          stack.push(B + A);
+          showSteps(`Push ${B} + ${A} = ${B + A}`, stack);
           break;
-        case "-": stack.push(A - B); 
-        showSteps(`Push ${A} - ${B} = ${A - B}`, stack);
+        case '-':
+          stack.push(B - A);
+          showSteps(`Push ${B} - ${A} = ${B - A}`, stack);
           break;
-        case "*": stack.push(A * B);
-        showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
+        case '*':
+          stack.push(B * A);
+          showSteps(`Push ${B} * ${A} = ${B * A}`, stack);
           break;
-        case "/": if (B == 0) {   // division by zero
-          alert("Don't divide by zero");
+        case '/':
+          if (A == 0) {
+            alert("Division by zero error");
+            return;
+          }
+          stack.push(B / A);
+          showSteps(`Push ${B} / ${A} = ${B / A}`, stack);
+          break;
+        default:
+          alert("Invalid character in expression");
           return;
-        }
-          stack.push(A / B); 
-          showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
-          break;
       }
     }
   }
-  return stack[stack.length - 1];
+
+  if (stack.length != 1) {
+    alert("Invalid expression: too many operands");
+    return;
+  }
+  
+  result = stack[stack.length - 1];
+  
+  return result;
 }
 
 function calculateResult() {
+  
   if (mode == "Prefix") evaluatePrefix(expression);  //check mode
   else evaluatePostfix(expression);
 
-  clearDisplay();   // clear the expression
-  if (isNaN(stack)) alert ("Who taught you math?") 
-    else display.value = stack;   // print answer
-  stack = [];   // empty the stack
+    clearDisplay(); // clear the expression
+    console.log(result);
+    display.value = result; // print answer to display
+    result = null;   // reset result
 }
 
 function showSteps(step , current_stack) {
