@@ -14,20 +14,20 @@ While it's harder for humans to read Prefix and Postfix notations. It's efficien
 ## How the calculator works ?  
 ### Steps For evaluating prefix expressions:
 1 - Split expression by spaces ' ', and initialize empty stack.  
-2 - Iterate moving from right to left. Starting from last token.  
+2 - Iterate moving from **right to left**. Starting from last token.  
 3 - If token is a number, push it to stack.  
 4 - If token is an operator, pop two elements from the stack. Do operations, then push the result to stack.  
 5 - Continue iterations until no tokens left.  
 6 - Pop last element in stack, which is the final result.    
 
 ### Steps For evaluating postfix expressions:  
-Same as previous steps but iterate moving from left to right. 
+Same as previous steps but iterate moving from **left to right**. 
 
 # Usage
 
 Brief explanation in the website.  
 User should know how to use Prefix and Postfix notations.  
-Or he/she can have fun with the rgb :)
+Or he/she can have fun with the **rgb** :)
 
 While using the calculator, please make sure to separate the expression with **space** for optimal experience.  
 
