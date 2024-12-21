@@ -1,22 +1,45 @@
 
-# Cool Prefix & Postfix Calculator Website
+![Website img](https://github.com/ramich866/RGB-Prefix-and-Postfix-Calculator/blob/main/images/RGB-P-P-Calculator.png)
 
-Simple website containing a CooL Calculator. Not a normal calculator. It only calculates prefix and postfix expressions.
+# RGB Prefix & Postfix Calculator
+
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/navendu-pottekkat/awesome-readme?include_prereleases)](https://img.shields.io/github/v/release/navendu-pottekkat/awesome-readme?include_prereleases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/navendu-pottekkat/awesome-readme)](https://img.shields.io/github/last-commit/navendu-pottekkat/awesome-readme)
+[![GitHub issues](https://img.shields.io/github/issues-raw/navendu-pottekkat/awesome-readme)](https://img.shields.io/github/issues-raw/navendu-pottekkat/awesome-readme)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/navendu-pottekkat/awesome-readme)](https://img.shields.io/github/issues-pr/navendu-pottekkat/awesome-readme)
+
+Usually, humans do their calculations using infix notations. (e.g: 60 + 10 - 1).  
+While it's harder for humans to read Prefix and Postfix notations. It's efficient in stack-based evaluation.  
+
+## How the calculator works ?  
+### Steps For evaluating prefix expressions:
+1 - Split expression by spaces ' ', and initialize empty stack.  
+2 - Iterate moving from **right to left**. Starting from last token.  
+3 - If token is a number, push it to stack.  
+4 - If token is an operator, pop two elements from the stack. Do operations, then push the result to stack.  
+5 - Continue iterations until no tokens left.  
+6 - Pop last element in stack, which is the final result.    
+
+### Steps For evaluating postfix expressions:  
+Same as previous steps but iterate moving from **left to right**. 
+
+# Usage
+
+Brief explanation in the website.  
+User should know how to use Prefix and Postfix notations.  
+Or he/she can have fun with the **rgb** :)
+
+While using the calculator, please make sure to separate the expression with **space** for optimal experience.  
+
+e.g.:    
+ **Correct form :**  + 9 * 30 8  
+**Wrong form :** +9*30 8  
+
+Access website by clicking [here](https://ramich866.github.io/RGB-Prefix-and-Postfix-Calculator/)
 
 
-## How to Use 
-Instructions are clear in the website. Just click on the link: https://ramich866.github.io/Prefix-and-Postfix-Calculator/
-## Overview : Evaluate Postfix
+# Installation
+[(Back to top)](#table-of-contents)
 
-1-Initialization: Trim expression, split by whitespace, initialize stack.  
-2- Processing:
-Push numbers onto the stack.  
-3- For operators, pop two operands, apply the operator, and push the result back.  
-Final Check: Ensure only one result remains on the stack.
-## Overview : Evaluate Prefix
-1- Initialization: Trim expression, initialize stack.  
-2- Processing:
-Process from right to left.
-Push numbers onto the stack.
-For operators, pop two operands, apply the operator, and push the result back.  
-3-Final Check: Ensure only one result remains on the stack.
+No Installation required.
+
