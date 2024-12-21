@@ -10,7 +10,7 @@ function clearDisplay() {
 }
 
 function addToDisplay(input) {
-  if (display.value === "Invalid Expression") {
+  if (display.value === "Invalid Expression" || display.value === "Invalid: space not found") {
     clearDisplay();
   }
   display.value += input;
@@ -41,6 +41,10 @@ function evaluatePrefix(expression) {
   for(let i = tokens.length - 1; i >= 0; i--){
     let token = tokens[i];
 
+    if (token.match(/[+*/-]/) && token.length > 1) {
+      clearSteps();
+      return result = "Invalid: space not found";
+    }
     //if number, push to stack
     if(!isNaN(token)) {
       stack.push(parseFloat(token));  //parseFloat to get multiple digit numbers
@@ -155,13 +159,16 @@ function calculateResult() {
   if (display.value == 0) { 
     return;
   }
+  if (display.value.includes(" ") && display.value.length > 2) {
+    return;
+  }
 
   //check mode
   if (mode == "Prefix") evaluatePrefix(expression);  
   else evaluatePostfix(expression);
     
   // error handling after evaluation
-  if (result == undefined || result == NaN || result == Infinity) {
+  if (result == undefined || result == NaN) {
     result = "Invalid Expression";
     clearDisplay();
     clearSteps();
@@ -188,6 +195,4 @@ function clearSteps() {
 }
 
 // click steps box to clear
-steps.addEventListener('click', () => {
-  clearSteps();
-})
+steps.addEventListener('click', (clearSteps))
