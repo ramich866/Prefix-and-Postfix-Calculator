@@ -1,5 +1,5 @@
 
-![Website img](https://github.com/ramich866/RGB-Prefix-and-Postfix-Calculator/blob/main/images/RGB-P-P-Calculator.png)
+![Website img](https://github.com/ramich866/RGB-Prefix-and-Postfix-Calculator/blob/main/images/RGB-prefix-postfix-calculator.png)
 
 # RGB Prefix & Postfix Calculator
 
