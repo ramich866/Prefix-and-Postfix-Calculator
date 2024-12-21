@@ -43,7 +43,7 @@ function evaluatePrefix(expression) {
 
     //if number, push to stack
     if(!isNaN(token)) {
-      stack.push(parseInt(token));  //parseInt to get multiple digit numbers
+      stack.push(parseFloat(token));  //parseFloat to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
     }
     else {
@@ -80,7 +80,7 @@ function evaluatePrefix(expression) {
       }
     }
   }
-  //pop the result, return it
+  //pop the result, return it 
   result = stack[stack.length - 1];
   return result;
 }
@@ -98,7 +98,7 @@ function evaluatePostfix(expression) {
 
     // if number, push to stack
     if (!isNaN(token)) {
-      stack.push(parseInt(token)); //parseInt to get multiple digit numbers
+      stack.push(parseFloat(token)); //parseFloat to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
     } else {
       // pop two operands

@@ -201,9 +201,9 @@ input::placeholder{
   font-weight: 700;
 }
 
-#equal {
+/* #equal {
   grid-column: span 2;
-}
+} */
 
 .steps-container {
   width: 325px;
