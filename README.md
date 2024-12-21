@@ -35,6 +35,7 @@ e.g.:
  **Correct form :**  + 9 * 30 8  
 **Wrong form :** +9*30 8  
 
+Access website by clicking [here](https://ramich866.github.io/RGB-Prefix-and-Postfix-Calculator/)
 
 
 # Installation
