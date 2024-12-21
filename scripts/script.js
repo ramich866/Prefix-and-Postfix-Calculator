@@ -41,17 +41,22 @@ function evaluatePrefix(expression) {
   for(let i = tokens.length - 1; i >= 0; i--){
     let token = tokens[i];
 
+    // error handling for space
     if (token.match(/[+*/-]/) && token.length > 1) {
       clearSteps();
       return result = "Invalid: space not found";
     }
+
     //if number, push to stack
     if(!isNaN(token)) {
       stack.push(parseFloat(token));  //parseFloat to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
     }
     else {
-      // pop two operands from stack
+      // check if there are two operands in stack
+      if (isFinite(stack[stack.length - 1]) && isFinite(stack[stack.length - 2])) {
+        
+        // pop two operands from stack
       let A = stack.pop();
       let B = stack.pop();
       showSteps(`Pop ${A} & ${B} <--`, stack);
@@ -71,8 +76,8 @@ function evaluatePrefix(expression) {
             showSteps(`Push ${A} * ${B} = ${A * B}`, stack);
             break;
           case '**':
-            stack.push(B ** A);
-            showSteps(`Push ${B} ** ${A} = ${B ** A}`, stack);
+            stack.push(A ** B);
+            showSteps(`Push ${A} ** ${B} = ${A ** B}`, stack);
             break;
           case '/':
             if (B == 0) {
@@ -81,30 +86,50 @@ function evaluatePrefix(expression) {
             stack.push(A / B);
             showSteps(`Push ${A} / ${B} = ${A / B}`, stack);
             break;
+        }
+      } 
+      else {
+        console.log(stack);
+        return result = "Invalid Expression";
       }
     }
   }
+  
+  if (stack.length > 1) {
+    return result = "Invalid Expression";
+  }
+  
   //pop the result, return it 
   result = stack[stack.length - 1];
   return result;
 }
 
-// insert space between operators and operands
 function evaluatePostfix(expression) {
   let stack = [];
   expression = display.value.trim();
   let tokens = expression.split(' '); // Split by space
 
   showSteps(`<NEW EXPRESSION>  ${expression}`, []);
+
   // move from left to right
   for (let i = 0; i < tokens.length; i++) {
     let token = tokens[i];
+
+    // error handling for space
+    if (token.match(/[+*/-]/) && token.length > 1) {
+      clearSteps();
+      return result = "Invalid: space not found";
+    }
 
     // if number, push to stack
     if (!isNaN(token)) {
       stack.push(parseFloat(token)); //parseFloat to get multiple digit numbers
       showSteps(`Push ${token}`, stack);
-    } else {
+    } 
+    else {
+      // check if there are two operands in stack
+      if (isFinite(stack[stack.length - 1]) && isFinite(stack[stack.length - 2])) {
+
       // pop two operands
       let A = stack.pop();
       let B = stack.pop();
@@ -137,6 +162,15 @@ function evaluatePostfix(expression) {
           break;
       }
     } 
+    else {
+      console.log(stack);
+      return result = "Invalid Expression";
+    }
+  }
+}
+
+  if (stack.length > 1) {
+    return result = "Invalid Expression";
   }
 
   // pop result, then return it
@@ -159,7 +193,7 @@ function calculateResult() {
   if (display.value == 0) { 
     return;
   }
-  if (display.value.includes(" ") && display.value.length > 2) {
+  if (!display.value.match(/\d/) && !display.value.match(/[+*/-]/)) {
     return;
   }
 
@@ -168,11 +202,12 @@ function calculateResult() {
   else evaluatePostfix(expression);
     
   // error handling after evaluation
-  if (result == undefined || result == NaN) {
+  if (result == undefined || result == NaN || result == "Invalid Expression" || result == "Invalid: space not found") {
     result = "Invalid Expression";
     clearDisplay();
     clearSteps();
   } 
+
   // display then reset result
   display.value = result;
   result = null;

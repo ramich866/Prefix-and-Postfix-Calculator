@@ -3,7 +3,7 @@ const ring_sfx = new Audio('./Sound-effects/Sonic Ring - Sound Effect (HD).mp3')
 ring_sfx.volume = 0.1;
 
 const can_open_sfx = new Audio('./Sound-effects/can-opening-fizzy-drink-soda-pop-high-quality-96655.mp3');
-can_open_sfx.volume = 0.3;
+can_open_sfx.volume = 0.1;
 
 // Buttons
 const misc_buttons = document.querySelectorAll('.misc-buttons');
