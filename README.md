@@ -18,11 +18,14 @@ While it's harder for humans to read Prefix and Postfix notations. It's efficien
 3 - If token is a number, push it to stack.  
 4 - If token is an operator, pop two elements from the stack. Do operations, then push the result to stack.  
 5 - Continue iterations until no tokens left.  
-6 - Pop last element in stack, which is the final result.  
+6 - Pop last element in stack, which is the final result.    
+
+### Steps For evaluating postfix expressions:  
+Same as previous steps but iterate moving from left to right. 
 
 # Usage
 
-Brief explanation included in the website.  
+Brief explanation in the website.  
 User should know how to use Prefix and Postfix notations.  
 Or he/she can have fun with the rgb :)
 
