@@ -22,7 +22,7 @@ While it's harder for humans to read Prefix and Postfix notations. It's efficien
 
 # Usage
 
-Brief explanation in the website.  
+Brief explanation included in the website.  
 User should know how to use Prefix and Postfix notations.  
 Or he/she can have fun with the rgb :)
 
