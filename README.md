@@ -21,7 +21,6 @@ While it's harder for humans to read Prefix and Postfix notations. It's efficien
 6 - Pop last element in stack, which is the final result.  
 
 # Usage
-[(Back to top)](#table-of-contents)
 
 Brief explanation in the website.  
 User should know how to use Prefix and Postfix notations.  
